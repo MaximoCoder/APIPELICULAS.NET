@@ -1,26 +1,30 @@
 ﻿using ApiPeliculas.Models;
 using ApiPeliculas.Models.Dtos;
 using ApiPeliculas.Repositorio.IRepositorio;
+using Asp.Versioning;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ApiPeliculas.Controllers
+namespace ApiPeliculas.Controllers.V1
 {
     //[Authorize(Roles = "Admin")] // Para protegerlos de ser usados por alguien que no esta autenticado
     //[ResponseCache(Duration = 20)] // Para cache
     //[ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)] // Para no permitir almacenar nada en cache
     // Utilizamos el perfil de cache
     [ResponseCache(CacheProfileName = "PorDefecto20Segundos")]
-    [Route("api/categorias")]
+    [Route("api/v{version:apiVersion}/categorias")]
     [ApiController]
-    public class CategoriasController : ControllerBase
+
+    // Especificamos la version de la API
+    [ApiVersion("1.0")]
+    public class CategoriasV1Controller : ControllerBase
     {
         private readonly ICategoriaRepositorio _ctRepo;
         private readonly IMapper _mapper;
 
-        public CategoriasController(ICategoriaRepositorio ctRepo, IMapper mapper)
+        public CategoriasV1Controller(ICategoriaRepositorio ctRepo, IMapper mapper)
         {
             // Instancia al repositorio y al mapper
             _ctRepo = ctRepo;
@@ -32,12 +36,14 @@ namespace ApiPeliculas.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult GetCategorias() { 
+        public IActionResult GetCategorias()
+        {
             var listaCategorias = _ctRepo.GetCategorias();
             // Exponer el dto
             var listaCategoriasDto = new List<CategoriaDto>();
             // Mapeamos la lista del dto con la del modelo
-            foreach (var lista in listaCategorias) { 
+            foreach (var lista in listaCategorias)
+            {
                 listaCategoriasDto.Add(_mapper.Map<CategoriaDto>(lista));
             }
             // Devolvemos el dto
@@ -56,12 +62,13 @@ namespace ApiPeliculas.Controllers
             var itemCategoria = _ctRepo.GetCategoria(categoriaId);
 
             //Validamos si es null
-            if (itemCategoria == null) { 
+            if (itemCategoria == null)
+            {
                 return NotFound();
             }
             // Exponer el dto
             var itemCategoriaDto = _mapper.Map<CategoriaDto>(itemCategoria);
-          
+
             // Devolvemos el dto
             return Ok(itemCategoriaDto);
         }
@@ -76,12 +83,13 @@ namespace ApiPeliculas.Controllers
         public IActionResult CrearCategoria([FromBody] CrearCategoriaDto crearCategoriaDto)
         {
             //Validamos si el modelo no es valido
-            if (!ModelState.IsValid) { 
+            if (!ModelState.IsValid)
+            {
                 return BadRequest(ModelState);
             }
 
             // Validamos si es null
-            if(crearCategoriaDto == null) { return BadRequest(ModelState); }
+            if (crearCategoriaDto == null) { return BadRequest(ModelState); }
 
             // Validamos si ya existe esa categoria
             if (_ctRepo.ExisteCategoria(crearCategoriaDto.Nombre))
@@ -93,12 +101,13 @@ namespace ApiPeliculas.Controllers
             var categoria = _mapper.Map<Categoria>(crearCategoriaDto);
 
             // Validamos si no se pudo crear entonces devolvemos error
-            if (!_ctRepo.CrearCategoria(categoria)) {
+            if (!_ctRepo.CrearCategoria(categoria))
+            {
                 ModelState.AddModelError("", $"Algo salio mal guardando el registro{categoria.Nombre}");
                 return StatusCode(404, ModelState);
             }
 
-            return CreatedAtRoute("GetCategoria", new {categoriaId = categoria.Id}, categoria);
+            return CreatedAtRoute("GetCategoria", new { categoriaId = categoria.Id }, categoria);
         }
 
         // Actualizar una categoria parcialmente PATCH
@@ -177,8 +186,9 @@ namespace ApiPeliculas.Controllers
         public IActionResult BorrarCategoria(int categoriaId)
         {
             // Validamos si existe la categoria
-            if (!_ctRepo.ExisteCategoria(categoriaId)) { 
-                return NotFound($"La categoria ingresada no existe{categoriaId}"); 
+            if (!_ctRepo.ExisteCategoria(categoriaId))
+            {
+                return NotFound($"La categoria ingresada no existe{categoriaId}");
             }
 
             var categoria = _ctRepo.GetCategoria(categoriaId);

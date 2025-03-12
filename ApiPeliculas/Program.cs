@@ -2,6 +2,7 @@ using ApiPeliculas.Data;
 using ApiPeliculas.PeliculasMapper;
 using ApiPeliculas.Repositorio;
 using ApiPeliculas.Repositorio.IRepositorio;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,12 +20,39 @@ builder.Services.AddDbContext<ApplicationDbContext>(opciones =>
 // Soporte para cache
 builder.Services.AddResponseCaching();
 
+// Versionamiento config 
+var apiVersionBuilder = builder.Services.AddApiVersioning(opcion =>
+{
+    // Asumimos que por default se usa la version 1.0 Si no se especifica
+    opcion.AssumeDefaultVersionWhenUnspecified = true;
+    opcion.DefaultApiVersion = new ApiVersion(1, 0);
+    opcion.ReportApiVersions = true;
+
+    // Dejamos de pedir la version en string
+    //opcion.ApiVersionReader = ApiVersionReader.Combine( 
+    //    new QueryStringApiVersionReader("api-version")
+    //);
+});
+
+apiVersionBuilder.AddApiExplorer(
+    opciones =>
+    {
+        opciones.GroupNameFormat = "'v'VVV";
+        opciones.SubstituteApiVersionInUrl = true; // Para pasarle por la url la version que queremos usar
+    }
+    );
+
 // Agregamos los repositorios
 builder.Services.AddScoped<ICategoriaRepositorio, CategoriaRepositorio>();
 builder.Services.AddScoped<IPeliculaRepositorio, PeliculaRepositorio>();
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 
 var key = builder.Configuration.GetValue<string>("ApiSettings:Secreta"); // KEY
+
+// Soporte para versionamiento de la api
+builder.Services.AddApiVersioning();
+
+
 //Agregamos el automapper
 builder.Services.AddAutoMapper(typeof(PeliculasMapper));
 
@@ -58,38 +86,74 @@ builder.Services.AddControllers(opcion =>
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(
-    options =>
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-        {
-            Description =
+        Description =
             "Autenticación JWT usando el esquema Bearer. \r\n\r\n" +
-            "Ingresa la palabra 'Bearer' seguido de un [espacio] y despues su token en el campo de abajo. \r\n\r\n" +
+            "Ingresa la palabra 'Bearer' seguido de un [espacio] y después su token en el campo de abajo. \r\n\r\n" +
             "Ejemplo: \"Bearer tkdauisdd1\"",
-            Name = "Authorization",
-            In = ParameterLocation.Header,
-            Scheme = "Bearer"
-        });
-        options.AddSecurityRequirement(new OpenApiSecurityRequirement()
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Scheme = "Bearer"
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
         {
+            new OpenApiSecurityScheme
             {
-                new OpenApiSecurityScheme
+                Reference = new OpenApiReference
                 {
-                    Reference = new OpenApiReference
-                    {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer"
-                    },
-                    Scheme = "oauth2",
-                    Name="Bearer",
-                    In = ParameterLocation.Header
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
                 },
-                new List<string>()
-            }
-        });
-    }
-    );
+                Scheme = "oauth2",
+                Name = "Bearer",
+                In = ParameterLocation.Header
+            },
+            new List<string>()
+        }
+    });
+
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1.0",
+        Title = "Peliculas Api V1",
+        Description = "Api de Peliculas",
+        TermsOfService = new Uri("https://maxweb.com"),
+        Contact = new OpenApiContact
+        {
+            Name = "MaximoDev",
+            Url = new Uri("https://maxweb.com")
+        },
+        License = new OpenApiLicense
+        {
+            Name = "Licencia personal",
+            Url = new Uri("https://maxweb.com")
+        }
+    });
+    // Config version 2
+    options.SwaggerDoc("v2", new OpenApiInfo
+    {
+        Version = "v2.0",
+        Title = "Peliculas Api V2",
+        Description = "Api de Peliculas",
+        TermsOfService = new Uri("https://maxweb.com"),
+        Contact = new OpenApiContact
+        {
+            Name = "MaximoDev",
+            Url = new Uri("https://maxweb.com")
+        },
+        License = new OpenApiLicense
+        {
+            Name = "Licencia personal",
+            Url = new Uri("https://maxweb.com")
+        }
+    });
+});
+
 
 //Soporte para CORS
 // Se pueden habilitar un dominio o multiples dominios
@@ -107,7 +171,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(opciones =>
+    {
+        // Definimos las versiones aqui
+        opciones.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiPeliculasV1");
+        opciones.SwaggerEndpoint("/swagger/v2/swagger.json", "ApiPeliculasV2");
+    });
 }
 
 app.UseHttpsRedirection();

@@ -1,8 +1,8 @@
 [
   {
-    "ContainingType": "ApiPeliculas.Controllers.CategoriasController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.CategoriasV1Controller",
     "Method": "GetCategorias",
-    "RelativePath": "api/categorias",
+    "RelativePath": "api/v1/categorias",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -25,9 +25,9 @@
     ]
   },
   {
-    "ContainingType": "ApiPeliculas.Controllers.CategoriasController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.CategoriasV1Controller",
     "Method": "CrearCategoria",
-    "RelativePath": "api/categorias",
+    "RelativePath": "api/v1/categorias",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -70,9 +70,9 @@
     ]
   },
   {
-    "ContainingType": "ApiPeliculas.Controllers.CategoriasController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.CategoriasV1Controller",
     "Method": "GetCategoria",
-    "RelativePath": "api/categorias/{categoriaId}",
+    "RelativePath": "api/v1/categorias/{categoriaId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -120,9 +120,9 @@
     "EndpointName": "GetCategoria"
   },
   {
-    "ContainingType": "ApiPeliculas.Controllers.CategoriasController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.CategoriasV1Controller",
     "Method": "ActualizarPatchCategoria",
-    "RelativePath": "api/categorias/{categoriaId}",
+    "RelativePath": "api/v1/categorias/{categoriaId}",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
@@ -171,9 +171,9 @@
     "EndpointName": "ActualizarPatchCategoria"
   },
   {
-    "ContainingType": "ApiPeliculas.Controllers.CategoriasController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.CategoriasV1Controller",
     "Method": "ActualizarPutCategoria",
-    "RelativePath": "api/categorias/{categoriaId}",
+    "RelativePath": "api/v1/categorias/{categoriaId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -231,9 +231,9 @@
     "EndpointName": "ActualizarPutCategoria"
   },
   {
-    "ContainingType": "ApiPeliculas.Controllers.CategoriasController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.CategoriasV1Controller",
     "Method": "BorrarCategoria",
-    "RelativePath": "api/categorias/{categoriaId}",
+    "RelativePath": "api/v1/categorias/{categoriaId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -286,9 +286,9 @@
     "EndpointName": "BorrarCategoria"
   },
   {
-    "ContainingType": "ApiPeliculas.Controllers.PeliculasController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.PeliculasV1Controller",
     "Method": "GetPeliculas",
-    "RelativePath": "api/peliculas",
+    "RelativePath": "api/v1/peliculas",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -311,9 +311,9 @@
     ]
   },
   {
-    "ContainingType": "ApiPeliculas.Controllers.PeliculasController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.PeliculasV1Controller",
     "Method": "CrearPelicula",
-    "RelativePath": "api/peliculas",
+    "RelativePath": "api/v1/peliculas",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -356,9 +356,9 @@
     ]
   },
   {
-    "ContainingType": "ApiPeliculas.Controllers.PeliculasController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.PeliculasV1Controller",
     "Method": "GetPelicula",
-    "RelativePath": "api/peliculas/{peliculaId}",
+    "RelativePath": "api/v1/peliculas/{peliculaId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -406,9 +406,9 @@
     "EndpointName": "GetPelicula"
   },
   {
-    "ContainingType": "ApiPeliculas.Controllers.PeliculasController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.PeliculasV1Controller",
     "Method": "ActualizarPatchPelicula",
-    "RelativePath": "api/peliculas/{peliculaId}",
+    "RelativePath": "api/v1/peliculas/{peliculaId}",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
@@ -457,9 +457,9 @@
     "EndpointName": "ActualizarPatchPelicula"
   },
   {
-    "ContainingType": "ApiPeliculas.Controllers.PeliculasController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.PeliculasV1Controller",
     "Method": "ActualizarPutPelicula",
-    "RelativePath": "api/peliculas/{peliculaId}",
+    "RelativePath": "api/v1/peliculas/{peliculaId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -517,9 +517,9 @@
     "EndpointName": "ActualizarPutPelicula"
   },
   {
-    "ContainingType": "ApiPeliculas.Controllers.PeliculasController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.PeliculasV1Controller",
     "Method": "BorrarPelicula",
-    "RelativePath": "api/peliculas/{peliculaId}",
+    "RelativePath": "api/v1/peliculas/{peliculaId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -572,9 +572,9 @@
     "EndpointName": "BorrarPelicula"
   },
   {
-    "ContainingType": "ApiPeliculas.Controllers.PeliculasController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.PeliculasV1Controller",
     "Method": "Buscar",
-    "RelativePath": "api/peliculas/Buscar",
+    "RelativePath": "api/v1/peliculas/Buscar",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -626,9 +626,9 @@
     ]
   },
   {
-    "ContainingType": "ApiPeliculas.Controllers.PeliculasController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.PeliculasV1Controller",
     "Method": "GetPeliculasEnCategoria",
-    "RelativePath": "api/peliculas/GetPeliculasEnCategoria/{categoriaId}",
+    "RelativePath": "api/v1/peliculas/GetPeliculasEnCategoria/{categoriaId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -675,9 +675,9 @@
     ]
   },
   {
-    "ContainingType": "ApiPeliculas.Controllers.UsuariosController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.UsuariosV1Controller",
     "Method": "GetUsuarios",
-    "RelativePath": "api/usuarios",
+    "RelativePath": "api/v1/usuarios",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -700,9 +700,9 @@
     ]
   },
   {
-    "ContainingType": "ApiPeliculas.Controllers.UsuariosController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.UsuariosV1Controller",
     "Method": "GetUsuario",
-    "RelativePath": "api/usuarios/{usuarioId}",
+    "RelativePath": "api/v1/usuarios/{usuarioId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -750,9 +750,9 @@
     "EndpointName": "GetUsuario"
   },
   {
-    "ContainingType": "ApiPeliculas.Controllers.UsuariosController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.UsuariosV1Controller",
     "Method": "Login",
-    "RelativePath": "api/usuarios/login",
+    "RelativePath": "api/v1/usuarios/login",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -795,9 +795,9 @@
     ]
   },
   {
-    "ContainingType": "ApiPeliculas.Controllers.UsuariosController",
+    "ContainingType": "ApiPeliculas.Controllers.V1.UsuariosV1Controller",
     "Method": "Registro",
-    "RelativePath": "api/usuarios/registro",
+    "RelativePath": "api/v1/usuarios/registro",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

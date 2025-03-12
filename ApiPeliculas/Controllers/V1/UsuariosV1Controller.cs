@@ -1,28 +1,32 @@
 ﻿using ApiPeliculas.Models;
 using ApiPeliculas.Models.Dtos;
 using ApiPeliculas.Repositorio.IRepositorio;
+using Asp.Versioning;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace ApiPeliculas.Controllers
+namespace ApiPeliculas.Controllers.V1
 {
-    [Route("api/usuarios")]
+    [Route("api/v{version:apiVersion}/usuarios")]
     [ApiController]
-    public class UsuariosController : ControllerBase
+    // Especificamos la version de la API
+    [ApiVersion("1.0")]
+    //[ApiVersion("2.0")]
+    public class UsuariosV1Controller : ControllerBase
     {
         private readonly IUsuarioRepositorio _usRepo;
         protected RespuestaApi _respuestaApi;
         private readonly IMapper _mapper;
 
-        public UsuariosController(IUsuarioRepositorio usRepo, IMapper mapper)
+        public UsuariosV1Controller(IUsuarioRepositorio usRepo, IMapper mapper)
         {
             // Instancia al repositorio y al mapper
             _usRepo = usRepo;
             _mapper = mapper;
-            this._respuestaApi = new();
+            _respuestaApi = new();
         }
 
         // obtener usuarios
@@ -77,7 +81,7 @@ namespace ApiPeliculas.Controllers
         public async Task<IActionResult> Registro([FromBody] UsuarioRegistroDto usuarioRegistroDto)
         {
             // Validamos si es unico
-            bool validarNombreUsuarioUnico = _usRepo.IsUniqueUser(usuarioRegistroDto.NombreUsuario); 
+            bool validarNombreUsuarioUnico = _usRepo.IsUniqueUser(usuarioRegistroDto.NombreUsuario);
             if (!validarNombreUsuarioUnico)
             {
                 _respuestaApi.StatusCode = System.Net.HttpStatusCode.BadRequest;
@@ -89,11 +93,12 @@ namespace ApiPeliculas.Controllers
             var usuario = await _usRepo.Registro(usuarioRegistroDto);
 
             // Validamos si es null
-            if (usuario == null) {
+            if (usuario == null)
+            {
                 _respuestaApi.StatusCode = System.Net.HttpStatusCode.BadRequest;
                 _respuestaApi.IsSuccess = false;
                 _respuestaApi.ErrorMessages.Add("Error en el registro");
-                return BadRequest(_respuestaApi); 
+                return BadRequest(_respuestaApi);
             }
 
             _respuestaApi.StatusCode = System.Net.HttpStatusCode.OK;
@@ -111,7 +116,7 @@ namespace ApiPeliculas.Controllers
         public async Task<IActionResult> Login([FromBody] UsuarioLoginDto usuarioLoginDto)
         {
             var respuestaLogin = await _usRepo.Login(usuarioLoginDto);
-            
+
             if (respuestaLogin.Usuario == null || string.IsNullOrEmpty(respuestaLogin.Token))
             {
                 _respuestaApi.StatusCode = System.Net.HttpStatusCode.BadRequest;
@@ -120,7 +125,7 @@ namespace ApiPeliculas.Controllers
                 return BadRequest(_respuestaApi);
             }
 
-            
+
             _respuestaApi.StatusCode = System.Net.HttpStatusCode.OK;
             _respuestaApi.IsSuccess = true;
             _respuestaApi.Result = respuestaLogin;

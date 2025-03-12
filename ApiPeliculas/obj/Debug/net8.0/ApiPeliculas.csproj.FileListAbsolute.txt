@@ -139,3 +139,7 @@ C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\bin\Debug\net8.0\Mic
 C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\bin\Debug\net8.0\XAct.Core.PCL.dll
 C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\obj\Debug\net8.0\ApiPeliculas.sourcelink.json
 C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\bin\Debug\net8.0\Asp.Versioning.Abstractions.dll
+C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\bin\Debug\net8.0\Asp.Versioning.Http.dll
+C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\bin\Debug\net8.0\Asp.Versioning.Mvc.dll
+C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\bin\Debug\net8.0\Asp.Versioning.Mvc.ApiExplorer.dll

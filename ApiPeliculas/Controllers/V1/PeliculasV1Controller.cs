@@ -1,22 +1,26 @@
 ﻿using ApiPeliculas.Models;
 using ApiPeliculas.Models.Dtos;
 using ApiPeliculas.Repositorio.IRepositorio;
+using Asp.Versioning;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
 
-namespace ApiPeliculas.Controllers
+namespace ApiPeliculas.Controllers.V1
 {
-    [Route("api/peliculas")]
+    [Route("api/v{version:apiVersion}/peliculas")]
     [ApiController]
-    public class PeliculasController : ControllerBase
+    // Especificamos la version de la API
+    [ApiVersion("1.0")]
+    //[ApiVersion("2.0")]
+    public class PeliculasV1Controller : ControllerBase
     {
         private readonly IPeliculaRepositorio _pelRepo;
         private readonly IMapper _mapper;
 
-        public PeliculasController(IPeliculaRepositorio pelRepo, IMapper mapper)
+        public PeliculasV1Controller(IPeliculaRepositorio pelRepo, IMapper mapper)
         {
             // Instancia al repositorio y al mapper
             _pelRepo = pelRepo;
@@ -203,16 +207,17 @@ namespace ApiPeliculas.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetPeliculasEnCategoria(int categoriaId) {
+        public IActionResult GetPeliculasEnCategoria(int categoriaId)
+        {
             var listaPeliculas = _pelRepo.GetPeliculasEnCategoria(categoriaId);
             // Validar si si tiene peliculas esa categoria
-            if(listaPeliculas == null)
+            if (listaPeliculas == null)
             {
                 return NotFound();
             }
             // Caso contrario mostramos las peliculas
             var itemPelicula = new List<PeliculaDto>();
-            foreach(var pelicula in listaPeliculas)
+            foreach (var pelicula in listaPeliculas)
             {
                 itemPelicula.Add(_mapper.Map<PeliculaDto>(pelicula));
             }
@@ -233,7 +238,8 @@ namespace ApiPeliculas.Controllers
             {
                 var resultado = _pelRepo.BuscarPelicula(nombre);
                 // Si encuentra algun resultado entonces lo devolvemos
-                if (resultado.Any()) { 
+                if (resultado.Any())
+                {
                     return Ok(resultado);
                 }
                 // Caso contrario
