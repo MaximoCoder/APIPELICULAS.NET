@@ -2,6 +2,7 @@
 using ApiPeliculas.Models.Dtos;
 using ApiPeliculas.Repositorio.IRepositorio;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -25,6 +26,7 @@ namespace ApiPeliculas.Controllers
         }
 
         // obtener usuarios
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -43,6 +45,7 @@ namespace ApiPeliculas.Controllers
         }
 
         // obtener 1 usuario
+        [Authorize(Roles = "Admin")]
         [HttpGet("{usuarioId:int}", Name = "GetUsuario")] // Aceptamos el parametro 
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -65,6 +68,7 @@ namespace ApiPeliculas.Controllers
         }
 
         // Crear un registro de usuario
+        [AllowAnonymous]
         [HttpPost("registro")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -98,6 +102,7 @@ namespace ApiPeliculas.Controllers
         }
 
         // Login de usuario
+        [AllowAnonymous]
         [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

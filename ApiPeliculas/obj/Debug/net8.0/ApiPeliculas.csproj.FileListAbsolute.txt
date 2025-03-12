@@ -137,3 +137,5 @@ C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\bin\Debug\net8.0\run
 C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\bin\Debug\net8.0\AutoMapper.dll
 C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\bin\Debug\net8.0\Microsoft.Practices.ServiceLocation.dll
 C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\bin\Debug\net8.0\XAct.Core.PCL.dll
+C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\obj\Debug\net8.0\ApiPeliculas.sourcelink.json
+C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

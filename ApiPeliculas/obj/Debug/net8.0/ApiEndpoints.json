@@ -2,7 +2,7 @@
   {
     "ContainingType": "ApiPeliculas.Controllers.CategoriasController",
     "Method": "GetCategorias",
-    "RelativePath": "api/Categorias",
+    "RelativePath": "api/categorias",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -27,7 +27,7 @@
   {
     "ContainingType": "ApiPeliculas.Controllers.CategoriasController",
     "Method": "CrearCategoria",
-    "RelativePath": "api/Categorias",
+    "RelativePath": "api/categorias",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -72,7 +72,7 @@
   {
     "ContainingType": "ApiPeliculas.Controllers.CategoriasController",
     "Method": "GetCategoria",
-    "RelativePath": "api/Categorias/{categoriaId}",
+    "RelativePath": "api/categorias/{categoriaId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -122,7 +122,7 @@
   {
     "ContainingType": "ApiPeliculas.Controllers.CategoriasController",
     "Method": "ActualizarPatchCategoria",
-    "RelativePath": "api/Categorias/{categoriaId}",
+    "RelativePath": "api/categorias/{categoriaId}",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
@@ -173,7 +173,7 @@
   {
     "ContainingType": "ApiPeliculas.Controllers.CategoriasController",
     "Method": "ActualizarPutCategoria",
-    "RelativePath": "api/Categorias/{categoriaId}",
+    "RelativePath": "api/categorias/{categoriaId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -233,7 +233,7 @@
   {
     "ContainingType": "ApiPeliculas.Controllers.CategoriasController",
     "Method": "BorrarCategoria",
-    "RelativePath": "api/Categorias/{categoriaId}",
+    "RelativePath": "api/categorias/{categoriaId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

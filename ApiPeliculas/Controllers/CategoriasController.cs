@@ -2,12 +2,18 @@
 using ApiPeliculas.Models.Dtos;
 using ApiPeliculas.Repositorio.IRepositorio;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiPeliculas.Controllers
 {
-    [Route("api/[controller]")]
+    //[Authorize(Roles = "Admin")] // Para protegerlos de ser usados por alguien que no esta autenticado
+    //[ResponseCache(Duration = 20)] // Para cache
+    //[ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)] // Para no permitir almacenar nada en cache
+    // Utilizamos el perfil de cache
+    [ResponseCache(CacheProfileName = "PorDefecto20Segundos")]
+    [Route("api/categorias")]
     [ApiController]
     public class CategoriasController : ControllerBase
     {
@@ -22,6 +28,7 @@ namespace ApiPeliculas.Controllers
         }
 
         // obtener categorias
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -38,6 +45,7 @@ namespace ApiPeliculas.Controllers
         }
 
         // obtener 1 categoria
+        [AllowAnonymous]
         [HttpGet("{categoriaId:int}", Name = "GetCategoria")] // Aceptamos el parametro 
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -59,6 +67,7 @@ namespace ApiPeliculas.Controllers
         }
 
         // Crear una categoria
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -93,6 +102,7 @@ namespace ApiPeliculas.Controllers
         }
 
         // Actualizar una categoria parcialmente PATCH
+        [Authorize(Roles = "Admin")]
         [HttpPatch("{categoriaId:int}", Name = "ActualizarPatchCategoria")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -124,6 +134,7 @@ namespace ApiPeliculas.Controllers
         }
 
         // Actualizar una categoria CON PUT
+        [Authorize(Roles = "Admin")]
         [HttpPut("{categoriaId:int}", Name = "ActualizarPutCategoria")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -156,6 +167,7 @@ namespace ApiPeliculas.Controllers
         }
 
         // Eliminar una categoria con DELETE
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{categoriaId:int}", Name = "BorrarCategoria")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
