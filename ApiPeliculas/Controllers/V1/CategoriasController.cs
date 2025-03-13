@@ -19,16 +19,22 @@ namespace ApiPeliculas.Controllers.V1
 
     // Especificamos la version de la API
     [ApiVersion("1.0")]
-    public class CategoriasV1Controller : ControllerBase
+    public class CategoriasController : ControllerBase
     {
         private readonly ICategoriaRepositorio _ctRepo;
         private readonly IMapper _mapper;
 
-        public CategoriasV1Controller(ICategoriaRepositorio ctRepo, IMapper mapper)
+        public CategoriasController(ICategoriaRepositorio ctRepo, IMapper mapper)
         {
             // Instancia al repositorio y al mapper
             _ctRepo = ctRepo;
             _mapper = mapper;
+        }
+        [Obsolete("Esta version es obsoleta porfavor use la version 2.0")]
+        [HttpGet("GetString")]
+        public IEnumerable<string> Get()
+        {
+            return new string[] { "Maximo", "Gonzalez" };
         }
 
         // obtener categorias

@@ -15,12 +15,12 @@ namespace ApiPeliculas.Controllers.V1
     // Especificamos la version de la API
     [ApiVersion("1.0")]
     //[ApiVersion("2.0")]
-    public class PeliculasV1Controller : ControllerBase
+    public class PeliculasController : ControllerBase
     {
         private readonly IPeliculaRepositorio _pelRepo;
         private readonly IMapper _mapper;
 
-        public PeliculasV1Controller(IPeliculaRepositorio pelRepo, IMapper mapper)
+        public PeliculasController(IPeliculaRepositorio pelRepo, IMapper mapper)
         {
             // Instancia al repositorio y al mapper
             _pelRepo = pelRepo;

@@ -19,16 +19,23 @@ namespace ApiPeliculas.Controllers.V2
 
     // Especificamos la version de la API
     [ApiVersion("2.0")]
-    public class CategoriasV2Controller : ControllerBase
+    // Hacer la version obsoleta
+    //[ApiVersion("2.0", Deprecated = true)]
+    public class CategoriasController : ControllerBase
     {
         private readonly ICategoriaRepositorio _ctRepo;
         private readonly IMapper _mapper;
 
-        public CategoriasV2Controller(ICategoriaRepositorio ctRepo, IMapper mapper)
+        public CategoriasController(ICategoriaRepositorio ctRepo, IMapper mapper)
         {
             // Instancia al repositorio y al mapper
             _ctRepo = ctRepo;
             _mapper = mapper;
+        }
+
+        [HttpGet("GetString")]
+        public IEnumerable<string> Get() {
+            return new string[] { "Maximo", "Gonzalez" };
         }
 
 

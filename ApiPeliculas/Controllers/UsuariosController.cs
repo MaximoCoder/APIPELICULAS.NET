@@ -8,20 +8,21 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging.Abstractions;
 
-namespace ApiPeliculas.Controllers.V1
+namespace ApiPeliculas.Controllers
 {
     [Route("api/v{version:apiVersion}/usuarios")]
     [ApiController]
     // Especificamos la version de la API
     [ApiVersion("1.0")]
-    //[ApiVersion("2.0")]
-    public class UsuariosV1Controller : ControllerBase
+    [ApiVersion("2.0")]
+    //[ApiVersionNeutral] // No depende de ninguna version
+    public class UsuariosController : ControllerBase
     {
         private readonly IUsuarioRepositorio _usRepo;
         protected RespuestaApi _respuestaApi;
         private readonly IMapper _mapper;
 
-        public UsuariosV1Controller(IUsuarioRepositorio usRepo, IMapper mapper)
+        public UsuariosController(IUsuarioRepositorio usRepo, IMapper mapper)
         {
             // Instancia al repositorio y al mapper
             _usRepo = usRepo;
@@ -50,12 +51,12 @@ namespace ApiPeliculas.Controllers.V1
 
         // obtener 1 usuario
         [Authorize(Roles = "Admin")]
-        [HttpGet("{usuarioId:int}", Name = "GetUsuario")] // Aceptamos el parametro 
+        [HttpGet("{usuarioId}", Name = "GetUsuario")] // Aceptamos el parametro 
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetUsuario(int usuarioId)
+        public IActionResult GetUsuario(string usuarioId)
         {
             var itemUsuario = _usRepo.GetUsuario(usuarioId);
 

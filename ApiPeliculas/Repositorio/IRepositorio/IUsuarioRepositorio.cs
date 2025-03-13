@@ -6,14 +6,20 @@ namespace ApiPeliculas.Repositorio.IRepositorio
     public interface IUsuarioRepositorio
     {
         // Obtener todos los usuarios
-        ICollection<Usuario> GetUsuarios();
+        ICollection<AppUsuario> GetUsuarios();
         // Obtener un usuario
-        Usuario GetUsuario(int usuarioId);
+        AppUsuario GetUsuario(string usuarioId);
         // Validar si es unico
         bool IsUniqueUser(string usuario);
-       // Login
-        Task<UsuarioLoginRespuestaDto> Login(UsuarioLoginDto usuarioLoginDto);
+
+        // Version sin identity
+        // Login
+        //Task<UsuarioLoginRespuestaDto> Login(UsuarioLoginDto usuarioLoginDto);
         // Registro
-        Task<Usuario> Registro(UsuarioRegistroDto usuarioRegistroDto);
+        //Task<Usuario> Registro(UsuarioRegistroDto usuarioRegistroDto);
+
+        // Version con identity
+        Task<UsuarioLoginRespuestaDto> Login(UsuarioLoginDto usuarioLoginDto);
+        Task<UsuarioDatosDto> Registro(UsuarioRegistroDto usuarioRegistroDto);
     }
 }

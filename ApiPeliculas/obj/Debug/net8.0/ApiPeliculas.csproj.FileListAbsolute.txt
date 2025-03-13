@@ -143,3 +143,4 @@ C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\bin\Debug\net8.0\Asp
 C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\bin\Debug\net8.0\Asp.Versioning.Http.dll
 C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\bin\Debug\net8.0\Asp.Versioning.Mvc.dll
 C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\bin\Debug\net8.0\Asp.Versioning.Mvc.ApiExplorer.dll
+C:\Users\RAMIRO\Desktop\api_Curso\ApiPeliculas\ApiPeliculas\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
