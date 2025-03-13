@@ -18,7 +18,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(opciones =>
     opciones.UseSqlServer(builder.Configuration.GetConnectionString("ConexionSql"))
 );
-
+// Error 500 schema QUITAR SI ES NECESARIO
+builder.Services.AddSwaggerGen(c =>
+{
+    c.CustomSchemaIds(type => type.FullName); // Usa el nombre completo con namespace
+});
 // Soporte para identity AUTH
 builder.Services.AddIdentity<AppUsuario, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -185,6 +189,8 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+// Soporte para imagenes (Archivos estaticos)
+app.UseStaticFiles();
 app.UseHttpsRedirection();
 // Soporte para cors
 app.UseCors("PoliticaCors");

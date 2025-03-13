@@ -13,12 +13,13 @@ namespace ApiPeliculas.Models
         public string Descripcion { get; set; }
        
         public int Duracion { get; set; }
-        public string RutaImagen {  get; set; }
+        public string? RutaImagen {  get; set; }
+        public string? RutaLocalImagen { get; set; }
         
         public enum TipoClasificacion { Siete, Trece, Dieciseis, Dieciocho }
         public TipoClasificacion Clasificacion {  get; set; } // Este implementa el enum
         
-        public DateTime FechaCreacion { get; set; }
+        public DateTime? FechaCreacion { get; set; }
 
         // Relacion con categoria
         public int categoriaId { get; set; }
