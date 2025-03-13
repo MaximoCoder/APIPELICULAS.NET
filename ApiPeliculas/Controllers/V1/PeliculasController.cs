@@ -27,23 +27,60 @@ namespace ApiPeliculas.Controllers.V1
             _mapper = mapper;
         }
 
-        // obtener Peliculas
+        // V1 obtener Peliculas
+        //[AllowAnonymous]
+        //[HttpGet]
+        //[ProducesResponseType(StatusCodes.Status403Forbidden)]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //public IActionResult GetPeliculas()
+        //{
+        //    var listaPeliculas = _pelRepo.GetPeliculas();
+        //    // Exponer el dto
+        //    var listaPeliculasDto = new List<PeliculaDto>();
+        //    // Mapeamos la lista del dto con la del modelo
+        //    foreach (var lista in listaPeliculas)
+        //    {
+        //        listaPeliculasDto.Add(_mapper.Map<PeliculaDto>(lista));
+        //    }
+        //    // Devolvemos el dto
+        //    return Ok(listaPeliculasDto);
+        //}
+
+        //V2 con páginación
         [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult GetPeliculas()
+        public IActionResult GetPeliculas([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 2)
         {
-            var listaPeliculas = _pelRepo.GetPeliculas();
-            // Exponer el dto
-            var listaPeliculasDto = new List<PeliculaDto>();
-            // Mapeamos la lista del dto con la del modelo
-            foreach (var lista in listaPeliculas)
+            try
             {
-                listaPeliculasDto.Add(_mapper.Map<PeliculaDto>(lista));
+                var totalPeliculas = _pelRepo.GetTotalPeliculas();
+                var peliculas = _pelRepo.GetPeliculas(pageNumber, pageSize);
+
+                if (peliculas == null || !peliculas.Any())
+                {
+                    return NotFound("No se encontraron películas.");
+                }
+
+                var peliculasDto = peliculas.Select(p => _mapper.Map<PeliculaDto>(p)).ToList();
+
+                var response = new
+                {
+                    PageNumber = pageNumber,
+                    PageSize = pageSize,
+                    TotalPages = (int)Math.Ceiling(totalPeliculas / (double)pageSize),
+                    TotalItems = totalPeliculas,
+                    Items = peliculasDto
+                };
+
+                return Ok(response);
+
             }
-            // Devolvemos el dto
-            return Ok(listaPeliculasDto);
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error recuperando datos de la aplicación");
+            }
         }
 
         // obtener 1 pelicula
@@ -314,19 +351,28 @@ namespace ApiPeliculas.Controllers.V1
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetPeliculasEnCategoria(int categoriaId)
         {
-            var listaPeliculas = _pelRepo.GetPeliculasEnCategoria(categoriaId);
-            // Validar si si tiene peliculas esa categoria
-            if (listaPeliculas == null)
+            try
             {
-                return NotFound();
+                var listaPeliculas = _pelRepo.GetPeliculasEnCategoria(categoriaId);
+
+                if (listaPeliculas == null || !listaPeliculas.Any())
+                {
+                    return NotFound($"No se encontraron películas en la categoría con ID {categoriaId}.");
+                }
+
+                var itemPelicula = listaPeliculas.Select(pelicula => _mapper.Map<PeliculaDto>(pelicula)).ToList();
+                //foreach (var pelicula in listaPeliculas)
+                //{
+                //    itemPelicula.Add(_mapper.Map<PeliculaDto>(pelicula));
+                //}
+
+                return Ok(itemPelicula);
             }
-            // Caso contrario mostramos las peliculas
-            var itemPelicula = new List<PeliculaDto>();
-            foreach (var pelicula in listaPeliculas)
+            catch (Exception)
             {
-                itemPelicula.Add(_mapper.Map<PeliculaDto>(pelicula));
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "rror recuperando datos de la aplicación");
             }
-            return Ok(itemPelicula);
         }
 
         // Buscar pelicula por nombre o descripcion
@@ -341,18 +387,19 @@ namespace ApiPeliculas.Controllers.V1
         {
             try
             {
-                var resultado = _pelRepo.BuscarPelicula(nombre);
-                // Si encuentra algun resultado entonces lo devolvemos
-                if (resultado.Any())
+                var peliculas = _pelRepo.BuscarPelicula(nombre);
+                // Validar si hay coincidencias
+                if (!peliculas.Any())
                 {
-                    return Ok(resultado);
+                    return NotFound($"No se encontraron películas que coincidan con los criterios de búsqueda.");
                 }
-                // Caso contrario
-                return NotFound();
+
+                var peliculasDto = _mapper.Map<IEnumerable<PeliculaDto>>(peliculas);
+                return Ok(peliculasDto);
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error recuperando los datos");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error recuperando datos de la aplicación");
             }
         }
     }

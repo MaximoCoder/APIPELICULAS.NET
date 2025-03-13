@@ -4,8 +4,13 @@ namespace ApiPeliculas.Repositorio.IRepositorio
 {
     public interface IPeliculaRepositorio
     {
+        //V1
         // Traer todas las Peliculas
-        ICollection<Pelicula> GetPeliculas();
+        //ICollection<Pelicula> GetPeliculas();
+
+        //V2 PAGINACION
+        ICollection<Pelicula> GetPeliculas(int pageNumber, int pageSize);
+        int GetTotalPeliculas();
         // Traer todas las Peliculas de una categoria
         ICollection<Pelicula> GetPeliculasEnCategoria(int catId);
         IEnumerable<Pelicula> BuscarPelicula(string nombre);

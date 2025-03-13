@@ -72,10 +72,24 @@ namespace ApiPeliculas.Repositorio
             return _bd.Pelicula.FirstOrDefault(c => c.Id == PeliculaId);
         }
 
-        public ICollection<Pelicula> GetPeliculas()
+        // V1
+        //public ICollection<Pelicula> GetPeliculas()
+        //{
+        //    // Traemos todos y los ordenamos por nombre
+        //    return _bd.Pelicula.OrderBy(c => c.Nombre).ToList();
+        //}
+
+        //V2
+        public ICollection<Pelicula> GetPeliculas(int pageNumber, int pageSize)
         {
-            // Traemos todos y los ordenamos por nombre
-            return _bd.Pelicula.OrderBy(c => c.Nombre).ToList();
+            return _bd.Pelicula.OrderBy(c => c.Nombre)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+        }
+        public int GetTotalPeliculas()
+        {
+            return _bd.Pelicula.Count();
         }
 
         public ICollection<Pelicula> GetPeliculasEnCategoria(int catId)
