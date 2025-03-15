@@ -1,8 +1,20 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\RAMIRO\\Desktop\\api_Curso\\ApiPeliculas\\ApiPeliculas\\wwwroot\\ImagenesPeliculas\\0712b0b4c-ba40-45e6-8047-290f171ae6cc.jpeg",
+      "PackagePath": "staticwebassets\\ImagenesPeliculas\\0712b0b4c-ba40-45e6-8047-290f171ae6cc.jpeg"
+    },
+    {
       "Id": "C:\\Users\\RAMIRO\\Desktop\\api_Curso\\ApiPeliculas\\ApiPeliculas\\wwwroot\\ImagenesPeliculas\\07247cf71-bb8f-4954-8cb6-cd1caec4eda6.png",
       "PackagePath": "staticwebassets\\ImagenesPeliculas\\07247cf71-bb8f-4954-8cb6-cd1caec4eda6.png"
+    },
+    {
+      "Id": "C:\\Users\\RAMIRO\\Desktop\\api_Curso\\ApiPeliculas\\ApiPeliculas\\wwwroot\\ImagenesPeliculas\\0b76cf826-b360-43de-a38c-01a8d06da698.png",
+      "PackagePath": "staticwebassets\\ImagenesPeliculas\\0b76cf826-b360-43de-a38c-01a8d06da698.png"
+    },
+    {
+      "Id": "C:\\Users\\RAMIRO\\Desktop\\api_Curso\\ApiPeliculas\\ApiPeliculas\\wwwroot\\ImagenesPeliculas\\0bf94c5d8-4256-419c-945a-6ae0602f3453.png",
+      "PackagePath": "staticwebassets\\ImagenesPeliculas\\0bf94c5d8-4256-419c-945a-6ae0602f3453.png"
     },
     {
       "Id": "C:\\Users\\RAMIRO\\Desktop\\api_Curso\\ApiPeliculas\\ApiPeliculas\\wwwroot\\ImagenesPeliculas\\65f8074aa-69e9-4f91-9f42-5a7446325f1b.png",

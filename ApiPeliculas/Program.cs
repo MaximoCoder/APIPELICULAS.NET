@@ -172,7 +172,8 @@ builder.Services.AddSwaggerGen(options =>
 // Usamos * para permitir todos
 builder.Services.AddCors(p => p.AddPolicy("PoliticaCors", build =>
 {
-    build.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+    //build.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+    build.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
 }));
 
 var app = builder.Build();
