@@ -13,10 +13,16 @@ namespace ApiPeliculas.Models.Dtos
         public int Duracion { get; set; }
         public string? RutaImagen { get; set; }
         public IFormFile Imagen {  get; set; }
-        public enum CrearTipoClasificacion { Siete, Trece, Dieciseis, Dieciocho }
         public CrearTipoClasificacion Clasificacion { get; set; } // Este implementa el enum
 
         // Relacion con categoria
         public int categoriaId { get; set; }
+    }
+    public enum CrearTipoClasificacion
+    {
+        Siete,
+        Trece,
+        Dieciseis,
+        Dieciocho
     }
 }

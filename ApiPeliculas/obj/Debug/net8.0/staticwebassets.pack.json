@@ -1,12 +1,20 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\RAMIRO\\Desktop\\api_Curso\\ApiPeliculas\\ApiPeliculas\\wwwroot\\ImagenesPeliculas\\00c429e4e-03d2-47c8-952f-0849e5f466e3.jpg",
+      "PackagePath": "staticwebassets\\ImagenesPeliculas\\00c429e4e-03d2-47c8-952f-0849e5f466e3.jpg"
+    },
+    {
       "Id": "C:\\Users\\RAMIRO\\Desktop\\api_Curso\\ApiPeliculas\\ApiPeliculas\\wwwroot\\ImagenesPeliculas\\0712b0b4c-ba40-45e6-8047-290f171ae6cc.jpeg",
       "PackagePath": "staticwebassets\\ImagenesPeliculas\\0712b0b4c-ba40-45e6-8047-290f171ae6cc.jpeg"
     },
     {
       "Id": "C:\\Users\\RAMIRO\\Desktop\\api_Curso\\ApiPeliculas\\ApiPeliculas\\wwwroot\\ImagenesPeliculas\\07247cf71-bb8f-4954-8cb6-cd1caec4eda6.png",
       "PackagePath": "staticwebassets\\ImagenesPeliculas\\07247cf71-bb8f-4954-8cb6-cd1caec4eda6.png"
+    },
+    {
+      "Id": "C:\\Users\\RAMIRO\\Desktop\\api_Curso\\ApiPeliculas\\ApiPeliculas\\wwwroot\\ImagenesPeliculas\\0b69233f1-8cbe-4e7b-9097-cdce08ab3c57.png",
+      "PackagePath": "staticwebassets\\ImagenesPeliculas\\0b69233f1-8cbe-4e7b-9097-cdce08ab3c57.png"
     },
     {
       "Id": "C:\\Users\\RAMIRO\\Desktop\\api_Curso\\ApiPeliculas\\ApiPeliculas\\wwwroot\\ImagenesPeliculas\\0b76cf826-b360-43de-a38c-01a8d06da698.png",
@@ -19,6 +27,14 @@
     {
       "Id": "C:\\Users\\RAMIRO\\Desktop\\api_Curso\\ApiPeliculas\\ApiPeliculas\\wwwroot\\ImagenesPeliculas\\65f8074aa-69e9-4f91-9f42-5a7446325f1b.png",
       "PackagePath": "staticwebassets\\ImagenesPeliculas\\65f8074aa-69e9-4f91-9f42-5a7446325f1b.png"
+    },
+    {
+      "Id": "C:\\Users\\RAMIRO\\Desktop\\api_Curso\\ApiPeliculas\\ApiPeliculas\\wwwroot\\ImagenesPeliculas\\8a144df62-314e-42ec-ace4-03fa4197511c.jpg",
+      "PackagePath": "staticwebassets\\ImagenesPeliculas\\8a144df62-314e-42ec-ace4-03fa4197511c.jpg"
+    },
+    {
+      "Id": "C:\\Users\\RAMIRO\\Desktop\\api_Curso\\ApiPeliculas\\ApiPeliculas\\wwwroot\\ImagenesPeliculas\\8fa7bd1d5-ec0b-4b85-b32a-1bc41eb60f84.png",
+      "PackagePath": "staticwebassets\\ImagenesPeliculas\\8fa7bd1d5-ec0b-4b85-b32a-1bc41eb60f84.png"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ApiPeliculas.Microsoft.AspNetCore.StaticWebAssets.props",

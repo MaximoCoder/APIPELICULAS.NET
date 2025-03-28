@@ -31,7 +31,7 @@ namespace ApiPeliculas.Controllers
         }
 
         // obtener usuarios
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -50,7 +50,7 @@ namespace ApiPeliculas.Controllers
         }
 
         // obtener 1 usuario
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpGet("{usuarioId}", Name = "GetUsuario")] // Aceptamos el parametro 
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status200OK)]
